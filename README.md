@@ -1,1 +1,1 @@
-<p>This repository includes personal projects that I built for experimentation, learning, and practice.</p>
+<p>This repository includes projects that I built for fun learning, and practice.</p>
