@@ -1,56 +1,81 @@
+from tkinter import Tk, Frame, Label, Entry, Button, IntVar, StringVar
+
 class Calculator:
-
     def __init__(self):
-        self.colour = "black"
-        self.weight= 230
-        self.manufacturer = "CASIO"
-        self.model = "FX-85GT CW"
-        self.country_of_origin = "Japan"
+        self.win = Tk()
+        self.win.title("Calculator")
+        self.win.geometry("320x220")
 
-    def add(self, a, b):
-        return a + b
+        self.n1 = IntVar()
+        self.n2 = IntVar()
+        self.result = StringVar(value="Result:")
 
-    def subtract(self, a, b):
-        return a - b
+    def run(self):
+        self.create_widgets()
+        self.win.mainloop()
 
-    def multiply(self, a, b):
-        return a * b
-
-    def divide(self, a, b):
-        if b == 0:
-            raise ValueError("Cannot divide by zero.")
-        return a / b
+    def create_widgets(self):
     
-    def power(self, a, b):
-        return a ** b
+        Label(self.win, text="Number 1:").grid(row=0, column=0, sticky="w", padx=10, pady=(10, 2))
+        Entry(self.win, width=20, textvariable=self.n1).grid(row=0, column=1, padx=10, pady=(10, 2))
+
+        Label(self.win, text="Number 2:").grid(row=1, column=0, sticky="w", padx=10, pady=2)
+        Entry(self.win, width=20, textvariable=self.n2).grid(row=1, column=1, padx=10, pady=2)
+
+        Label(self.win, textvariable=self.result).grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+
+        btn_frame = Frame(self.win)
+        btn_frame.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+
+        add_button = Button(btn_frame, text="+", width=4, command=self.add)
+        add_button.grid(row=0, column=0, padx=2, pady=2)
+
+        subtract_button = Button(btn_frame, text="-", width=4, command=self.subtract)
+        subtract_button.grid(row=0, column=1, padx=2, pady=2)
+
+        multiply_button = Button(btn_frame, text="×", width=4, command=self.multiply)
+        multiply_button.grid(row=0, column=2, padx=2, pady=2)
+
+        divide_button = Button(btn_frame, text="÷", width=4, command=self.divide)
+        divide_button.grid(row=0, column=3, padx=2, pady=2)
+
+        power_button = Button(btn_frame, text="x^y", width=4, command=self.power)
+        power_button.grid(row=1, column=0, padx=2, pady=(8, 0))
+        
+        sqrt_button = Button(btn_frame, text="√", width=4, command=self.square_root)
+        sqrt_button.grid(row=1, column=1, padx=2, pady=(8, 0))
+
+        destroy_button = Button(btn_frame, text="Close", command=self.win.destroy)
+        destroy_button.grid(row=1, column=2, columnspan=2, sticky="we", pady=(8, 0))
+
+    def add(self):
+        self.result.set(f"Result: {self.n1.get() + self.n2.get()}")
+
+    def subtract(self):
+        self.result.set(f"Result: {self.n1.get() - self.n2.get()}")
+
+    def multiply(self):
+        self.result.set(f"Result: {self.n1.get() * self.n2.get()}")
+
+    def divide(self):
+        n1, n2 = self.n1.get(), self.n2.get()
+        if n2 == 0:
+            self.result.set("Result: error (÷0)")
+            return
+        self.result.set(f"Result: {n1 / n2}")
     
-    def square_root(self, a):
-        if a < 0:
-            raise ValueError("Cannot take square root of negative number.")
-        return a ** 0.5
+    def power(self):
+        self.result.set(f"Result: {self.n1.get() ** self.n2.get()}")
+    
+    def square_root(self):
+        n1 = self.n1.get()
+        if n1 < 0:
+            self.result.set("Result: error (√-1)")
+            return
+        self.result.set(f"Result: {n1 ** 0.5}")
 
 def main():
-    calculator = Calculator()
+    Calculator().run()
 
-    num1 = int(input("Enter first number: "))
-    operator = input("Enter operator (+, -, *, /, ^, sqrt ): ")
-    num2 = int(input("Enter second number: "))
-
-    if operator == "+":
-        result = calculator.add(num1, num2)
-    elif operator == "-":
-        result = calculator.subtract(num1, num2)
-    elif operator == "*":
-        result = calculator.multiply(num1, num2)
-    elif operator == "/":
-        result = calculator.divide(num1, num2)
-    elif operator == "^":
-        result = calculator.power(num1, num2)
-    elif operator == "sqrt":
-        result = calculator.square_root(num1)
-    else:
-        print("Invalid operator")
-    return print(f"Answer: {result}")
-    
 if __name__ == "__main__":
     main()
