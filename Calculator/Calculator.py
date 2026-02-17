@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, Entry, Button, IntVar, StringVar
+from tkinter import Tk, Frame, Label, Entry, Button, StringVar, DoubleVar
 
 class Calculator:
     def __init__(self):
@@ -6,8 +6,8 @@ class Calculator:
         self.win.title("Calculator")
         self.win.geometry("320x220")
 
-        self.n1 = IntVar()
-        self.n2 = IntVar()
+        self.n1 = DoubleVar()
+        self.n2 = DoubleVar()
         self.result = StringVar(value="Result:")
 
     def run(self):
@@ -76,6 +76,4 @@ class Calculator:
 
 def main():
     Calculator().run()
-
-if __name__ == "__main__":
-    main()
+main()
