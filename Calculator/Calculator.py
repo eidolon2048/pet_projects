@@ -59,9 +59,9 @@ class Calculator:
 
     def divide(self):
         n1, n2 = self.n1.get(), self.n2.get()
-        if n2 == 0:
+        if n2 == 0 or n2 == 0.0:
             self.result.set("Result: error (÷0)")
-            return
+            return 
         self.result.set(f"Result: {n1 / n2}")
     
     def power(self):
