@@ -9,11 +9,10 @@ alphabet = letters + digits + special_chars
 pwd_length = 20
 
 while True:
-    pwd = ''.join(secrets.choice(alphabet) for i in range(pwd_length))
+    pwd = ''.join(secrets.choice(alphabet) for _ in range(pwd_length))
 
     if (any(char in special_chars for char in pwd)and
         sum(char in digits for char in pwd)>=2):
-            break
+        break
     
-print("Your password is: \n")
-print(pwd, "\n")
+print(f"\nYour password is:\n{pwd}\n")
