@@ -14,5 +14,6 @@ while True:
     if (any(char in special_chars for char in pwd)and
         sum(char in digits for char in pwd)>=2):
             break
+    
 print("Your password is: \n")
 print(pwd, "\n")
