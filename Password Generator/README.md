@@ -1,8 +1,6 @@
 ### Passwords examples:
-    Your password is: 
-
-    ."n(wF^sfK88Y5DDr`Z) 
+    Your password is:
+    [(Y6[t6.\L!)w!w:XAKu
     
-    Your password is: 
-
-    Q9x-1!=p2'HCAQXIaYUW 
+    Your password is:
+    7Dn&@z<EK`)aB=gTj"4Z 
